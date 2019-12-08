@@ -14,7 +14,7 @@ exports.postAdmins = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Admin added to the server!', data: admin  });
+		res.json({ message: 'Admin added to the server.', data: admin  });
 	});
 };
 
@@ -67,6 +67,6 @@ exports.deleteAdmin = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Admin removed from the server!' });
+		res.json({ message: 'Admin removed from the server.' });
 	});
 };

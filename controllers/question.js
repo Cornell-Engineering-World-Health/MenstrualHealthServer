@@ -17,7 +17,7 @@ exports.postQuestions = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Question added to the server!', data: question  });
+		res.json({ message: 'Question added to the server.', data: question  });
 	});
 };
 
@@ -71,7 +71,7 @@ exports.deleteQuestion = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Question removed from the server!' });
+		res.json({ message: 'Question removed from the server.' });
 	});
 };
 

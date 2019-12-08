@@ -4,10 +4,12 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
-var adminController = require('./controllers/admin')
+var adminController = require('./controllers/admin');
 
 // Connect to the game_server MongoDB
 mongoose.connect('mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
+// mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority
+// mongodb://localhost:27017/game_server
 
 // Create our Express application
 var app = express();
