@@ -5,9 +5,9 @@ var bodyParser = require('body-parser');
 var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
 var adminController = require('./controllers/admin')
-
+var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
-mongoose.connect('mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect(url);
 
 // Create our Express application
 var app = express();
