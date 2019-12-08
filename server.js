@@ -7,9 +7,7 @@ var userController = require('./controllers/user');
 var adminController = require('./controllers/admin')
 
 // Connect to the game_server MongoDB
-mongoose.connect('mongodb://localhost:27017/game_server');
-//mongodb://localhost:27017/beerlocker
-//mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority
+mongoose.connect('mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
 
 // Create our Express application
 var app = express();
