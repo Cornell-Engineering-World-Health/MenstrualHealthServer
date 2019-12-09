@@ -6,7 +6,7 @@ var QuestionSchema   = new mongoose.Schema({
     prompt: String,
     correct: Boolean,
     module_num: Number,
-    attempt_num: Number
+    attempt_num: {type:Number, default: 0}
 });
 
 // Export the Mongoose model
