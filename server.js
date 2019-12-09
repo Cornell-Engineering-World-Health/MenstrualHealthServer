@@ -4,12 +4,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
-var adminController = require('./controllers/admin');
-
+var adminController = require('./controllers/admin')
+var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
-mongoose.connect('mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
-// mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority
-// mongodb://localhost:27017/game_server
+mongoose.connect(url);
 
 // Create our Express application
 var app = express();
@@ -68,4 +66,4 @@ router.route('/admins/:admin_id')
 app.use('/api', router);
 
 // Start the server
-app.listen(3000);
+app.listen(process.env.PORT || 5000);
