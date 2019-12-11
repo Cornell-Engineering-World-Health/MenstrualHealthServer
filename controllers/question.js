@@ -10,14 +10,14 @@ exports.postQuestions = function(req, res) {
 	question.prompt = req.body.prompt;
     question.correct = req.body.correct;
     question.module_num = req.body.module_num;
-    question.attempt_num = req.body.attempt_num;
+    question.attempt_num = 0;
 
 	// Save the question and check for errors
 	question.save(function(err) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Question added to the server!', data: question  });
+		res.json({ message: 'Question added to the server.', data: question  });
 	});
 };
 
@@ -43,6 +43,17 @@ exports.getQuestion = function(req, res) {
 	});
 };
 
+// Create endpoint /api/questions/modules/:module_num for GET
+exports.getModuleQuestions = function(req, res) {
+    // Use the Question model to find all questions from module_num
+    Question.find({module_num: req.params.module_num}, function(err, questions) {
+        if (err)
+            res.send(err);
+        
+        res.json(questions);
+    });
+};
+
 // Create endpoint /api/questions/:question_id for PUT
 exports.putQuestion = function(req, res) {
 	// Use the Question model to find a specific question
@@ -52,8 +63,9 @@ exports.putQuestion = function(req, res) {
 
 		// Update the existing question answer
         question.correct = req.body.correct;
+        
         question.attempt_num++;
-
+        
 		// Save the question and check for errors
 		question.save(function(err) {
 			if (err)
@@ -71,7 +83,7 @@ exports.deleteQuestion = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'Question removed from the server!' });
+		res.json({ message: 'Question removed from the server.' });
 	});
 };
 

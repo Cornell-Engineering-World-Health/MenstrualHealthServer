@@ -38,6 +38,10 @@ router.route('/questions/:question_id')
     .put(questionController.putQuestion)
     .delete(questionController.deleteQuestion);
 
+// Create endpoint handlers for /questions/modules/:module_num
+router.route('/questions/modules/:module_num')
+    .get(questionController.getModuleQuestions);
+
 // Create endpoint handlers for /users
 router.route('/users')
     .post(userController.postUsers)

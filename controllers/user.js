@@ -51,6 +51,6 @@ exports.deleteUser = function(req, res) {
 		if (err)
 			res.send(err);
 
-		res.json({ message: 'User removed from the game!' });
+		res.json({ message: 'User removed from the server.' });
 	});
 };
