@@ -8,9 +8,7 @@ exports.postQuestions = function(req, res) {
 
 	// Set the question properties that came from the POST data
 	question.prompt = req.body.prompt;
-    question.correct = req.body.correct;
     question.module_num = req.body.module_num;
-    question.attempt_num = 0;
 
 	// Save the question and check for errors
 	question.save(function(err) {
@@ -61,11 +59,9 @@ exports.putQuestion = function(req, res) {
 		if (err)
 			res.send(err);
 
-		// Update the existing question answer
-        question.correct = req.body.correct;
-        
-        question.attempt_num++;
-        
+		// Update the existing question prompt
+        question.prompt = req.body.prompt;
+                
 		// Save the question and check for errors
 		question.save(function(err) {
 			if (err)
