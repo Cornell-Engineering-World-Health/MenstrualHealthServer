@@ -9,6 +9,7 @@ exports.postUsers = function(req, res) {
     // Set the user properties that came from the POST data
     user.first_name = req.body.first_name;
     user.last_name = req.body.last_name;
+    user.age = req.body.age;
     user.admin_id = req.body.admin_id;
     user.state_id = req.body.state_id;
     
@@ -42,6 +43,17 @@ exports.getUser = function(req, res) {
 
 		res.json(user);
 	});
+};
+
+// Create endpoint /api/users/:admin_id for GET
+exports.getUsersByAdmin = function(req, res) {
+    // Use the User model to find all users with admin_id
+    User.find({admin_id: req.params.admin_id}, function(err, users) {
+        if (err)
+            res.send(err);
+        
+        res.json(users);
+    });
 };
 
 // Create endpoint /api/users/:user_id for DELETE
