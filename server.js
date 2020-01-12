@@ -4,11 +4,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
-var adminController = require('./controllers/admin')
+var progressController = require('./controllers/progress')
 var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
 mongoose.connect(url);
-
 // Create our Express application
 var app = express();
 
@@ -52,15 +51,35 @@ router.route('/users/:user_id')
     .get(userController.getUser)
     .delete(userController.deleteUser);
 
-// Create endpoint handlers for /admins
-router.route('/admins')
-    .post(adminController.postAdmins)
-    .get(adminController.getAdmins);
+// Create endpoint handlers for /users/:admin_id
+router.route('/users/:admin_id')
+    .get(userController.getUsersByAdmin);
 
-// Create endpoint handlers for /admins/:admin_id
-router.route('/admins/:admin_id')
-    .get(adminController.getAdmin)
-    .delete(adminController.deleteAdmin);
+// Create endpoint handlers for /progress
+router.route('/progress')
+    .post(progressController.postProgress)
+    .get(progressController.getAllProgress);
+
+// Create endpoint handlers for /progress/:progress_id
+router.route('/progress/:progress_id')
+    .put(progressController.putProgress)
+    .delete(progressController.deleteProgress)
+    .get(progressController.getProgress);
+
+// Create endpoint handlers for /progress/:user_id
+router.route('/progress/:user_id')
+    .get(progressController.getUserProgress);
+
+// Create endpoint handlers for /progress/:question_id
+router.route('/progress/:question_id')
+    .get(progressController.getQuestionProgress);
+
+// Create endpoint handlers for /progress/:user_id/:question_id
+router.route('/progress/:user_id/:question_id')
+    .get(progressController.getUserQuestionProgress);
+
+
+
 
 // Register all our routes with /api
 app.use('/api', router);
