@@ -8,6 +8,7 @@ var progressController = require('./controllers/progress')
 var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
 mongoose.connect(url);
+
 // Create our Express application
 var app = express();
 
@@ -77,8 +78,6 @@ router.route('/progress/:question_id')
 // Create endpoint handlers for /progress/:user_id/:question_id
 router.route('/progress/:user_id/:question_id')
     .get(progressController.getUserQuestionProgress);
-
-
 
 
 // Register all our routes with /api
