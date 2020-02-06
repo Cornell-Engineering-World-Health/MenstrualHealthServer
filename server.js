@@ -7,7 +7,8 @@ var userController = require('./controllers/user');
 var progressController = require('./controllers/progress')
 var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
-mongoose.connect(url);
+mongoose.connect('mongodb://localhost:27017/game_server');
+//mongodb://localhost:27017/game_server
 
 // Create our Express application
 var app = express();
