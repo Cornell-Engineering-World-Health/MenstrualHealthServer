@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 var UserSchema   = new mongoose.Schema({
     first_name: String,
     last_name: String,
+    village_name: String,
+    comments: String,
+    date_registered: Date,
     admin_id: String,
     state_id: String
 });

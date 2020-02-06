@@ -9,7 +9,8 @@ exports.postUsers = function(req, res) {
     // Set the user properties that came from the POST data
     user.first_name = req.body.first_name;
     user.last_name = req.body.last_name;
-    user.age = req.body.age;
+    user.village_name = req.body.village_name;
+    user.date_registered = new Date();
     user.admin_id = req.body.admin_id;
     user.state_id = req.body.state_id;
     

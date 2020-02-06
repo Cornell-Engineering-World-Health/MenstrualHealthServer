@@ -7,8 +7,7 @@ var userController = require('./controllers/user');
 var progressController = require('./controllers/progress')
 var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
-mongoose.connect('mongodb://localhost:27017/game_server');
-//mongodb://localhost:27017/game_server
+mongoose.connect('mongodb+srv://<username>:<password>@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
 
 // Create our Express application
 var app = express();
@@ -18,7 +17,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// Use environment defined port or 3000
+// Use endvironment defined port or 3000
 var port = process.env.PORT || 3000;
 
 // Create our Express router
