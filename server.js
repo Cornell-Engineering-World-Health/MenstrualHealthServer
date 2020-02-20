@@ -21,6 +21,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization');
+  next();
+})
+
+
 // Use endvironment defined port or 3000
 var port = process.env.PORT || 3000;
 
