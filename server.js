@@ -1,10 +1,14 @@
 // Load required packages
+
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
-var progressController = require('./controllers/progress')
+var progressController = require('./controllers/progress');
+var adminController = require('./controllers/admin');
 var url = process.env.MONGO_URI;
 // Connect to the game_server MongoDB
 mongoose.connect('mongodb+srv://<username>:<password>@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
@@ -24,8 +28,23 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.json({ message: 'Welcome!' }); 
+    res.json({ message: 'Welcome!' });
 });
+
+var jwtCheck = jwt({
+      secret: jwks.expressJwtSecret({
+          cache: true,
+          rateLimit: true,
+          jwksRequestsPerMinute: 5,
+          jwksUri: 'https://dev-mhs.auth0.com/.well-known/jwks.json'
+    }),
+    audience: 'https://mhs-api',
+    issuer: 'https://dev-mhs.auth0.com/',
+    algorithms: ['RS256']
+});
+
+// auth key
+//app.use(jwtCheck);
 
 // Create endpoint handlers for /questions
 router.route('/questions')
@@ -78,6 +97,17 @@ router.route('/progress/:question_id')
 // Create endpoint handlers for /progress/:user_id/:question_id
 router.route('/progress/:user_id/:question_id')
     .get(progressController.getUserQuestionProgress);
+
+// Create endpoint handlers for /admins
+router.route('/admins')
+    .post(adminController.postAdmins)
+    .get(adminController.getAdmins);
+
+// Create endpoint handlers for /admins/:admin_id
+router.route('/admins/:admin_id')
+    .get(adminController.getAdmin)
+    .put(adminController.putAdmin)
+    .delete(adminController.deleteAdmin);
 
 
 // Register all our routes with /api
