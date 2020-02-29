@@ -8,9 +8,7 @@ exports.postQuestions = function(req, res) {
 
 	// Set the question properties that came from the POST data
 	question.prompt = req.body.prompt;
-    question.correct = req.body.correct;
-    question.module_num = req.body.module_num;
-    question.attempt_num = 0;
+  question.module_num = req.body.module_num;
 
 	// Save the question and check for errors
 	question.save(function(err) {
@@ -46,10 +44,10 @@ exports.getQuestion = function(req, res) {
 // Create endpoint /api/questions/modules/:module_num for GET
 exports.getModuleQuestions = function(req, res) {
     // Use the Question model to find all questions from module_num
-    Question.find({module_num: req.params.module_num}, function(err, questions) {
+	  Question.find({module_num: req.params.module_num}, function(err, questions) {
         if (err)
             res.send(err);
-        
+
         res.json(questions);
     });
 };
@@ -61,11 +59,9 @@ exports.putQuestion = function(req, res) {
 		if (err)
 			res.send(err);
 
-		// Update the existing question answer
-        question.correct = req.body.correct;
-        
-        question.attempt_num++;
-        
+		// Update the existing question prompt
+        question.prompt = req.body.prompt;
+
 		// Save the question and check for errors
 		question.save(function(err) {
 			if (err)
@@ -86,4 +82,3 @@ exports.deleteQuestion = function(req, res) {
 		res.json({ message: 'Question removed from the server.' });
 	});
 };
-
