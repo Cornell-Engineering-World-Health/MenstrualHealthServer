@@ -12,7 +12,7 @@ var adminController = require('./controllers/admin');
 
 var url = process.env.MONGODB_URI;
 // Connect to the game_server MongoDB
-mongoose.connect(url);
+mongoose.connect('mongodb+srv://Vivi:yywyyw@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
 
 // Create our Express application
 var app = express();
