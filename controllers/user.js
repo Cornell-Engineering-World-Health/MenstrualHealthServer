@@ -5,7 +5,8 @@ var User = require('../models/user');
 exports.postUsers = function(req, res) {
     // Create a new instance of the User model
     var user = new User();
-
+    console.log('req', req)
+    console.log('res', res)
     // Set the user properties that came from the POST data
     user.first_name = req.body.first_name;
     user.last_name = req.body.last_name;

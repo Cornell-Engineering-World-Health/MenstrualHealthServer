@@ -7,7 +7,7 @@ exports.postAdmins = function(req, res) {
 	var admin = new Admin();
 
 	// Set the admin properties that came from the POST data
-	admin.username = req.body.username;
+	admin.username = req.body.username;	
 
 	// Save the admin and check for errors
 	admin.save(function(err) {

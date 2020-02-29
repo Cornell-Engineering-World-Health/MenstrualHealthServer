@@ -9,17 +9,20 @@ var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
 var progressController = require('./controllers/progress');
 var adminController = require('./controllers/admin');
-var url = process.env.MONGO_URI;
+
+var url = process.env.MONGODB_URI;
 // Connect to the game_server MongoDB
-mongoose.connect('mongodb+srv://<username>:<password>@gameserver-wwz3i.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect(url);
 
 // Create our Express application
 var app = express();
 
 // Use the body-parser package in our application
-app.use(bodyParser.urlencoded({
+/* app.use(bodyParser.urlencoded({
     extended: true
-}));
+})); */
+
+app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -27,7 +30,6 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization');
   next();
 })
-
 
 // Use endvironment defined port or 3000
 var port = process.env.PORT || 3000;
