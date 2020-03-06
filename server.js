@@ -54,7 +54,7 @@ var jwtCheck = jwt({
 });
 
 // auth key
-//app.use(jwtCheck);
+app.use(jwtCheck);
 
 // Create endpoint handlers for /questions
 router.route('/questions')
