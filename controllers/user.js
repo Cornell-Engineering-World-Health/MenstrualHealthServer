@@ -51,6 +51,7 @@ exports.getUser = function(req, res) {
 // Create endpoint /api/users/:admin_id for GET
 exports.getUsersByAdmin = function(req, res) {
     // Use the User model to find all users with admin_id
+    console.log('IN', req.params.admin_id);
     User.find({admin_id: req.params.admin_id}, function(err, users) {
         if (err)
             res.send(err);
