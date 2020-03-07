@@ -81,8 +81,8 @@ router.route('/users/:user_id')
     .get(userController.getUser)
     .delete(userController.deleteUser);
 
-// Create endpoint handlers for /users/:admin_id
-router.route('/users/:admin_id')
+// Create endpoint handlers for /users/admin/:admin_id
+router.route('/users/admin/:admin_id')
     .get(userController.getUsersByAdmin);
 
 // Create endpoint handlers for /progress
