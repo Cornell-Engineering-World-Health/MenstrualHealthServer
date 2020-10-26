@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 })
 
 var authorization = function(req, res, next) {
-  console.log("HEADER: " + req.header);
+  console.log("HEADER: " + req.headers);
   if(!req.header.Authorization) {
     return res.json({ error: 'No credentials sent!' });
   } else if (req.header.Authorization != API_KEY) {
