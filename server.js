@@ -36,9 +36,9 @@ var authorization = function(req, res, next) {
   for(h in req.headers) {
     console.log("HEADER: " + h)
   }
-  if(!req.headers['X-API-Key']) {
+  if(!req.headers['x-api-key']) {
     return res.json({ error: 'No credentials sent!' });
-  } else if (req.headers['X-API-Key'] != API_KEY) {
+  } else if (req.headers['x-api-key'] != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   }
   next()
