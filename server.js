@@ -38,7 +38,7 @@ var authorization = function(req, res, next) {
   } else if (req.headers['x-api-key'] != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   } else {
-    return next();
+    next();
   }
 }
 
