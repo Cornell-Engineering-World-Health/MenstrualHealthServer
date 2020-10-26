@@ -1,7 +1,5 @@
 // Load required packages
 
-import { API_KEY } from './key_gen.js'
-
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 var express = require('express');
@@ -13,6 +11,7 @@ var progressController = require('./controllers/progress');
 var adminController = require('./controllers/admin');
 console.log('process.env: ', process.env);
 var url = process.env.MONGO_URI;
+var API_KEY = process.env.API_KEY;
 // Connect to the game_server MongoDB
 mongoose.connect(url);
 
