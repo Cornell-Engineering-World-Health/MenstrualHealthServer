@@ -50,10 +50,6 @@ var port = process.env.PORT || 3000;
 // Create our Express router
 var router = express.Router();
 
-
-
-router.use()
-
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome!' });
 });
