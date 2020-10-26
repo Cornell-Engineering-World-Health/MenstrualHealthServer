@@ -32,19 +32,32 @@ app.use(function (req, res, next) {
   next();
 })
 
+var authorization = function(req, res, next) {
+  console.log('AUTHORIZING');
+  if(!req.headers.Authorization) {
+    return res.json({ error: 'No credentials sent!' });
+  } else if (req.headers.Authorization != API_KEY) {
+    return res.json({ message: 'Unauthorized.' });
+  }
+}
+
+app.use(authorization);
+
 // Use endvironment defined port or 3000
 var port = process.env.PORT || 3000;
 
 // Create our Express router
 var router = express.Router();
 
+
+
+router.use()
+
 router.get('/', function(req, res) {
-  if(!req.headers.Authorization) {
-    return res.json({ error: 'No credentials sent!' });
-  } else if (req.headers.Authorization == API_KEY) {
-    return res.json({ message: 'Welcome!' });
-  }
+    res.json({ message: 'Welcome!' });
 });
+
+
 
 
 // Create endpoint handlers for /questions
