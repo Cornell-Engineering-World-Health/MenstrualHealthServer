@@ -42,7 +42,7 @@ var authorization = function(req, res, next) {
   }
 }
 
-app.use(authorization);
+app.use('/', authorization);
 
 // Use enviroment defined port or 3000
 var port = process.env.PORT || 3000;
@@ -53,8 +53,6 @@ var router = express.Router();
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome!' });
 });
-
-
 
 
 // Create endpoint handlers for /questions
