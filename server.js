@@ -41,12 +41,11 @@ var authorization = function(req, res, next) {
   } else if (req.headers['x-api-key'] != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   }
-  next()
 }
 
 app.use(authorization);
 
-// Use endvironment defined port or 3000
+// Use enviroment defined port or 3000
 var port = process.env.PORT || 3000;
 
 // Create our Express router
