@@ -9,7 +9,6 @@ var questionController = require('./controllers/question');
 var userController = require('./controllers/user');
 var progressController = require('./controllers/progress');
 var adminController = require('./controllers/admin');
-console.log('process.env: ', process.env);
 var url = process.env.MONGO_URI;
 var API_KEY = process.env.API_KEY;
 // Connect to the game_server MongoDB
@@ -17,11 +16,6 @@ mongoose.connect(url);
 
 // Create our Express application
 var app = express();
-
-// Use the body-parser package in our application
-/* app.use(bodyParser.urlencoded({
-    extended: true
-})); */
 
 app.use(bodyParser.json());
 
@@ -116,7 +110,6 @@ router.route('/admins/:admin_id')
     .get(adminController.getAdmin)
     .put(adminController.putAdmin)
     .delete(adminController.deleteAdmin);
-
 
 // Register all our routes with /api
 app.use('/api', router);
