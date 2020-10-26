@@ -38,11 +38,11 @@ var authorization = function(req, res, next) {
   } else if (req.headers['x-api-key'] != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   } else {
-    next();
+    return next();
   }
 }
 
-app.use('/', authorization);
+app.use(authorization);
 
 // Use enviroment defined port or 3000
 var port = process.env.PORT || 3000;
