@@ -28,15 +28,15 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization');
+  res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization, X-API-Key');
   next();
 })
 
 var authorization = function(req, res, next) {
-  console.log("HEADER: " + req.headers);
-  if(!req.header.Authorization) {
+  console.log("HEADER: " + req.headers.X-API-Key);
+  if(!req.headers.X-API-Key) {
     return res.json({ error: 'No credentials sent!' });
-  } else if (req.header.Authorization != API_KEY) {
+  } else if (req.headers.X-API-Key != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   }
   next()
