@@ -11,6 +11,7 @@ var progressController = require('./controllers/progress');
 var adminController = require('./controllers/admin');
 console.log('process.env: ', process.env);
 var url = process.env.MONGO_URI;
+var API_KEY = process.env.API_KEY;
 // Connect to the game_server MongoDB
 mongoose.connect(url);
 
@@ -41,20 +42,10 @@ router.get('/', function(req, res) {
     res.json({ message: 'Welcome!' });
 });
 
-var jwtCheck = jwt({
-      secret: jwks.expressJwtSecret({
-          cache: true,
-          rateLimit: true,
-          jwksRequestsPerMinute: 5,
-          jwksUri: 'https://dev-mhs.auth0.com/.well-known/jwks.json'
-    }),
-    audience: 'https://mhs-api',
-    issuer: 'https://dev-mhs.auth0.com/',
-    algorithms: ['RS256']
-});
-
 // auth key
-app.use(jwtCheck);
+app.use(function(req,res,next) {
+  req.headers['Authorization'] == API_KEY
+});
 
 // Create endpoint handlers for /questions
 router.route('/questions')
