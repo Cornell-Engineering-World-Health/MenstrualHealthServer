@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization, X-API-Key');
-  next();
+
 })
 
 var authorization = function(req, res, next) {
@@ -38,7 +38,7 @@ var authorization = function(req, res, next) {
   } else if (req.headers['x-api-key'] != API_KEY) {
     return res.json({ message: 'Unauthorized.' });
   } else {
-    return res.json({ message: 'Authorized.' });
+    next();
   }
 }
 
