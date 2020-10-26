@@ -39,13 +39,13 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.json({ message: 'Welcome!' });
+  if(!req.headers.Authorization) {
+    return res.json({ error: 'No credentials sent!' });
+  } else if (req.headers.Authorization == API_KEY) {
+    return res.json({ message: 'Welcome!' });
+  }
 });
 
-// auth key
-app.use(function(req,res,next) {
-  req.headers['Authorization'] == API_KEY
-});
 
 // Create endpoint handlers for /questions
 router.route('/questions')
