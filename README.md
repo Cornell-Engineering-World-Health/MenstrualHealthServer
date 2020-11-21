@@ -1,3 +1,3 @@
 # GameServer
 
-deployed at https://menstralhealthgameserver.herokuapp.com/
+deployed at https://healthfriendgameserver.herokuapp.com
