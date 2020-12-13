@@ -73,6 +73,7 @@ router.route('/state/:state_id')
 
 // Create endpoint handlers for /state/user/:user_id
 router.route('/state/user/:user_id')
+    .put(adminController.putUserState)
     .get(stateController.getUserState);
 
 // Create endpoint handlers for /admins
