@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 // Define our progress schema
 var ProgressSchema = new mongoose.Schema({
     question_id: Number,
-    correct: Boolean,
-    attempt_num: {type:Number, default: 0}
+    question_complete: Boolean,
+    attempts: {type:Number, default: 0}
 });
 
 var StateSchema = new mongoose.Schema({
