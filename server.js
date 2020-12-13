@@ -67,7 +67,7 @@ router.route('/state')
 
 // Create endpoint handlers for /state/:state_id
 router.route('/state/:state_id')
-    .put(stateController.putS)
+    .put(stateController.putState)
     .delete(stateController.deleteState)
     .get(stateController.getState);
 
