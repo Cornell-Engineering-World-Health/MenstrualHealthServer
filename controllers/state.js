@@ -46,7 +46,7 @@ exports.getState = function(req, res) {
 	});
 };
 
-// Create endpoint /api/state/:user_id for GET
+// Create endpoint /api/state/user/:user_id for GET
 exports.getUserState = function(req, res) {
     // Use the State model to find all state from user_id
 	  State.find({user_id: req.params.user_id}, function(err, state) {
@@ -57,13 +57,36 @@ exports.getUserState = function(req, res) {
     });
 };
 
+// Create endpoint /api/state/user/:user_id for PUT
+exports.putUserState = function(req, res) {
+	// Use the State model to find specific state
+	State.find({user_id: req.params.user_id}, function(err, state) {
+		if (err)
+			res.send(err);
+
+				state.module_id = req.body.module_id;
+				state.scene_id = req.body.scene_id;
+				state.line_id = req.body.line_id;
+				state.module_complete = req.body.module_complete;
+			  state.assessment_progress = req.body.assessment_progress;
+
+		// Save the state and check for errors
+		state.save(function(err) {
+			if (err)
+				res.send(err);
+
+			res.json(state);
+		});
+	});
+};
+
 // Create endpoint /api/state/:state_id for PUT
 exports.putState = function(req, res) {
 	// Use the State model to find specific state
 	State.findById(req.params.state_id, function(err, state) {
 		if (err)
 			res.send(err);
-			
+
 				state.module_id = req.body.module_id;
 				state.scene_id = req.body.scene_id;
 				state.line_id = req.body.line_id;
