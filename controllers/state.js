@@ -49,7 +49,7 @@ exports.getState = function(req, res) {
 // Create endpoint /api/state/user/:user_id for GET
 exports.getUserState = function(req, res) {
     // Use the State model to find all state from user_id
-	  State.find({user_id: req.params.user_id}, function(err, state) {
+	  State.findOne({user_id: req.params.user_id}, function(err, state) {
         if (err)
             res.send(err);
 
